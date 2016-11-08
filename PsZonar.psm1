@@ -1,3 +1,5 @@
+Write-Debug "Importing module PsZonar..."
+
 ##
 # load (dot-source) *.PS1 files, excluding unit-test scripts (*.Tests.*), and disabled scripts (__*)
 #
