@@ -37,14 +37,16 @@ function Get-Jbustrip
 
     # convert date/time to Epoch
     # numbor of seconds that have elapsed since 1970/01/01 00:00:00 UTC
-    $startingEpoch = ConvertTo-Epoch $StartinDate
+    $startingEpoch = ConvertTo-Epoch $StartingDate
     $endingEpoch = ConvertTo-Epoch $EndingDate
 
     # $endpoint='https://lor0540.zonarsystems.net/interface.php'
+    $endpoint = $MyInvocation.MyCommand.Module.PrivateData.PSData.ZonarUrl
+    Write-Debug "EP: $endpoint"
 
-    $url = "$($Host.PrivateData.ZonarUrl)?action=showopen&format=xml&operation=jbustrip&start=$startingEpoch&end=$endingEpoch"
-    Write-Verbose $url
-    
+    $url = "$endpoint`?action=showopen&format=xml&operation=jbustrip&start=$startingEpoch&end=$endingEpoch"
+    Write-Debug $url
+
     $password = ConvertTo-PlainText $Credential.Password
 
     # get XML from service
@@ -52,7 +54,7 @@ function Get-Jbustrip
     ( Invoke-WebRequst -Url $url -Credential $Credential ).Content
 
     # time required to perform action
-    Write-Verbose "Get-Jbustrip: $( Get-Date - $start)"
+    Write-Verbose "Get-Jbustrip: $( (Get-Date) - $start)"
 
     # add name of operation to object so it can be included in the pipeline
     # Add-Member -InputObject $results NoteProperty 'Operation' $operation
