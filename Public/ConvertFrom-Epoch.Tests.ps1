@@ -1,6 +1,7 @@
-﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-. "$here${directorySeparatorChar}$sut"
+﻿# $here = Split-Path -Parent $MyInvocation.MyCommand.Path
+# $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
+# . "$here${directorySeparatorChar}$sut"
+Import-Module PsZonar -Force
 
 Describe "ConvertFrom-Epoch" {
 

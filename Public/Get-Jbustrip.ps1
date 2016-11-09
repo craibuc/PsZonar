@@ -51,7 +51,7 @@ function Get-Jbustrip
 
     # get XML from service
     # (Invoke-WebRequst -u $url -c (New-Credential -user  $Credential.UserName -password $password)).Content
-    ( Invoke-WebRequst -Url $url -Credential $Credential ).Content
+    [xml]( Invoke-WebRequest -Uri $url -Credential $Credential ).Content
 
     # time required to perform action
     Write-Verbose "Get-Jbustrip: $( (Get-Date) - $start)"
