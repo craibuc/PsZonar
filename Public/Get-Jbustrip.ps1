@@ -13,9 +13,24 @@ Start of the period to be retrieved.
 End of the period to be retrieved.
 
 .EXAMPLE
-PS> Get-Jbustrip -Credential Get-Credential -StartingDate '10/01/2016' -EndingDate '10/31/2016'
+# Get credentials interactively.
+PS> Get-Jbustrip -Credential Get-Credential -StartingDate '10/31/2016' -EndingDate '10/31/2016 23:59:59'
 
-Get credentials interactively.
+.EXAMPLE
+# store the credentials
+PS> $credential = Get-Credential
+
+# store starting date
+PS> $sd = [DateTime]::Today.AddDays(-1)
+
+# store ending date
+PS> $ed = [DateTime]::Today.AddSeconds(-1)
+
+# get XML data from service
+PS> $xml = Get-Jbustrip -Credential $credential -StartingDate $sd -EndingDate $ed
+
+# display the results
+PS> $xml.jbustrip.trip.asset
 
 #>
 function Get-Jbustrip
