@@ -30,7 +30,7 @@ PS> $ed = [DateTime]::Today.AddSeconds(-1)
 PS> $xml = Get-MileageByState -Credential $credential -StartingDate $sd -EndingDate $ed
 
 # display the results
-PS> $xml.MileageByState
+PS> $xml.gpsmileagelist.assetdist
 
 #>
 function Get-MileageByState
