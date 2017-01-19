@@ -11,7 +11,16 @@ $endingDate = '1/14/2017'
 $credential = Get-Credential
 
 $r = Get-Jbustrip -c $credential -sd $startingDate -ed $endingDate
-...
+$r.jbustrip.trip.asset | % {
+
+    # generate the query to add to the asset table for each `asset` instance (other properties omitted for clarity)
+    $query = "INSERT INTO trip (fleet,id,start,end) VALUES ({0},{1},'{2}','{3}')" -F $_.fleet,$_.id,$_.start,$_.end
+    Write-Debug $query
+    
+    # perform the INSERT
+    Invoke-SqlCmd -ServerInstance 'server_name' -Query $query
+
+}
 ~~~~
 
 ## Get-MileageByState
