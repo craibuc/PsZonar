@@ -1,6 +1,14 @@
 # PsZonar
 PowerShell wrapper of selected Zonar web methods.
 
+# Configuration
+
+## Set the endpoint
+
+Supply the appropriate `subdomain` in the `PsZonar.psd1`:
+
+    ZonarUrl = 'https://[subdomain].zonarsystems.net/interface.php';
+
 # Usage
 
 ## Get-Jbustrip
